@@ -7,7 +7,7 @@ homeassistant:
   name: Home Assistant
   latitude: !secret latitude_loc_home
   longitude: !secret longitude_loc_home
-  elevation: !secret evelation_loc_home
+  # elevation: !secret evelation_loc_home
   time_zone: America/New_York
   temperature_unit: F
   unit_system: metric
@@ -24,10 +24,6 @@ panel_iframe:
     title: 'Windguru'
     url: 'https://www.windguru.cz/784224'
     icon: mdi:weather-windy
-  tasmoadmin:
-    title: TasmoAdmin
-    icon: mdi:lightbulb-on
-    url: !secret TasmoAdminURL
 
 ####################################################
 #                                                  #
@@ -36,15 +32,11 @@ panel_iframe:
 ####################################################
 http:
   api_password: !secret http_api_password # Used for IOS App
-  ssl_certificate: !secret http_ssl_certificate
-  ssl_key: !secret http_ssl_key
+  # Using proxy ssl_certificate: !secret http_ssl_certificate
+  # Using Proxy ssl_key: !secret http_ssl_key
   base_url: !secret http_base_url
 discovery:
   ignore:
-    - samsung_tv
-    - apple_tv
-    - plex_mediaserver
-updater:
   include_used_components: True
 config:
 ios:
@@ -87,40 +79,21 @@ logger:
 #                     Camera                       #
 #                                                  #
 ####################################################
-camera:
-  - platform: generic
-    still_image_url: 'https://www.thinkbroadband.com/broadband/monitoring/quality/share/ae25a213af51ed64c2cdf601d17a934194317d36.png'
-    name: broadbandquality
+
 
 ####################################################
 #                                                  #
 #            Heating, Cooling & Security           #
 #                                                  #
 ####################################################
-nest:
-  client_id: !secret nest_client_id
-  client_secret: !secret nest_client_secret
-dyson:
-  username: !secret dyson_username
-  password: !secret dyson_password
-  language: GB
-  devices: 
-    - device_id: !secret dyson_fan1_serial
-      device_ip: !secret dyson_fan1_ip_address
-fan:
-  - platform: dyson
+
 
 ####################################################
 #                                                  #
 #            RFXtrx433 & Z-Wave Devices            #
 #                                                  #
 ####################################################
-rfxtrx:
-  device: /dev/ttyUSB0
-  debug: False
-  dummy: False
-zwave:
-  usb_path: /dev/ttyACM0
+
 
 ####################################################
 #                                                  #
@@ -160,10 +133,10 @@ mqtt:
 #                Climate & Weather                 #
 #                                                  #
 ####################################################
-climate:
-  platform: nest
 weather:
-  - platform: yweather
+  - platform: darksky
+    api_key: !secret darksky_api_key
+    units: us
 sun:
 
 ####################################################
@@ -171,30 +144,22 @@ sun:
 #                  Text to Speech                  #
 #                                                  #
 ####################################################
-tts:
-  - platform: google
-    cache: true
-    cache_dir: /tmp/tts
-    time_memory: 300
-  - platform: voicerss
-    api_key: !secret voicerss_api_key
-    language: 'en-gb'
-    format: '44khz_16bit_stereo'
+# tts:
+#   - platform: google
+#     cache: true
+#     cache_dir: /tmp/tts
+#     time_memory: 300
+#   - platform: voicerss
+#     api_key: !secret voicerss_api_key
+#     language: 'en-gb'
+#     format: '44khz_16bit_stereo'
 
 ####################################################
 #                                                  #
 #                      Timers                      #
 #                                                  #
 ####################################################
-timer:
-  ironing_room_motion_timer: 
-      name: "Ironing Room Motion Timer"
-      icon: mdi:close-circle
-      duration: '00:30:00'
-  ironing_room_motion_timer_reset_poll:
-      name: "Ironing Room Motion Timer Reset Poll"
-      icon: mdi:close-circle
-      duration: '00:05:00'
+
 
 ####################################################
 #                                                  #
