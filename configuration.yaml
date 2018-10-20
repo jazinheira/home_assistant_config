@@ -8,11 +8,11 @@ homeassistant:
   latitude: !secret latitude_loc_home
   longitude: !secret longitude_loc_home
   elevation: !secret evelation_loc_home
-  time_zone: Europe/London
-  temperature_unit: C
+  time_zone: America/New_York
+  temperature_unit: F
   unit_system: metric
   customize: !include includes/customize.yaml
-  customize_glob: !include includes/customize_glob.yaml
+  customize_glob: !include includes/customize_glob.elevationyaml
 
 ###################################################
 #                                                 #
