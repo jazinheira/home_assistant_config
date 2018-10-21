@@ -4,8 +4,8 @@
 include:
   entities:
     # HaveIBeenPwned
-    - sensor.breaches_jva357gmailcom
-    - sensor.breaches_carnisauraolcom
+    - !secret sensor_hibp_email1
+    - !secret sensor_hibp_email2
     # Waze
     - sensor.to_home
     - sensor.to_work

@@ -97,45 +97,13 @@
     - platform: numeric_state
       above: 0
       entity_id: 
-        - !secret sensor_hibp_email3
-        - !secret sensor_hibp_email4
-        - !secret sensor_hibp_email5
-        - !secret sensor_hibp_email9
-    - platform: numeric_state
-      above: 1
-      entity_id:
-        - !secret sensor_hibp_email2
-    - platform: numeric_state
-      above: 2
-      entity_id:
-        - !secret sensor_hibp_email6
-        - !secret sensor_hibp_email7
-    - platform: numeric_state
-      above: 3
-      entity_id:
-        - !secret sensor_hibp_email8
-    - platform: numeric_state
-      above: 4
-      entity_id:
         - !secret sensor_hibp_email1
+        - !secret sensor_hibp_email2
   action:
     service: notify.pushover
     data_template:
       message: "Warning - HaveIbeenPwned detected {{trigger.to_state.attributes.friendly_name}}"
 
-- id: a_sonos_tts_test
-  alias: Sonos TTS Test
-  trigger:
-    - platform: state
-      entity_id: input_boolean.mytest
-  action:
-    - service: script.sonos_say
-      data:
-        sonos_entity: media_player.conservatory
-        volume: 0.5
-        message: 'This is a test of Sonos Text to Speech'
-        # Delay needs to be long enough to allow text to be read aloud
-        delay: '00:00:05'
 
 - id: a_hass_update_available
   alias: 'HASS Update Available Notifications'
@@ -146,73 +114,3 @@
     service: notify.pushover
     data:
       message: 'Update for Home Assistant is available.'
-
-- id: a_sonos_burglar_alarm
-  alias: Sonos Burglar Alarm
-  trigger:
-    - platform: state
-      entity_id: input_boolean.mytest
-  action:
-    - service: script.sonos_alarm
-      data:
-        # Maximum Volume
-        volume: 1.0
-        # Duration before stopping and restoring state
-        delay: '00:01:00'
-
-- id: a_sonos_restore_snapshot
-  alias: 'Sonos restore snapshot state'
-  trigger:
-    - platform: state
-      entity_id: input_boolean.mytest
-  action:
-    - service: media_player.sonos_restore
-
-- id: a_garage_Fan_On
-  alias: Garage Fan Turn On When Hot
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.aeotec_zw100_multisensor_6_temperature_2
-      above: 20
-      for:
-        minutes: 10
-  action:
-    - service: homeassistant.turn_on
-      entity_id: switch.tp_hs110_6
-
-- id: a_garage_Fan_Off
-  alias: Garage Fan Turn Off When Not Hot
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.aeotec_zw100_multisensor_6_temperature_2
-      below: 20
-      for:
-        minutes: 10
-  action:
-    - service: homeassistant.turn_off
-      entity_id: switch.tp_hs110_6
-
-- id: a_weekly_snapshot
-  alias: HASSIO Weekly Snapshot (3am)
-  trigger:
-    - platform: time
-      at: '3:00:00'
-  condition:
-    condition: time
-    weekday:
-      - sun
-  action:
-  - service: hassio.snapshot_full
-    data_template:
-      name: Automated Backup {{ now().strftime('%Y-%m-%d') }}
-
-- id: a_weekly_snapshot_dropbox_sync
-  alias: Dropbox Snapshot Sync (4am)
-  trigger: 
-    - platform: time
-      at: '4:00:00'
-  action:
-    - service: hassio.addon_stdin
-      data_template:
-        addon: 7be23ff5_dropbox_sync
-        input: {"command":"upload"}

@@ -119,39 +119,12 @@ automation_utilities:
     - automation.update_config_hass_if_travis_build_is_successfull
     - automation.Have_I_Been_Pwned_Change
     - automation.hass_update_available_notifications
-    - automation.hassio_weekly_snapshot_3am
-    - automation.dropbox_snapshot_sync_4am
 
-automation_powercontrol:
-  name: Power Control
-  entities:
-    - automation.turn_on_lights_in_the_morning_and_at_sunset
-    - automation.turn_off_morning_lights
-    - automation.ironing_room_motion_detected
-    - automation.ironing_room_timer_reset
-    - automation.ironing_room_no_motion_turn_off_irons_left
-    - automation.ironing_room_no_motion_turn_off_irons_right
-    - automation.ironing_room_no_motion_turn_off_ironing_table
-    - automation.ironing_room_no_motion_turn_off_magpie_iron
-    - automation.loft_fan_turn_on_when_hot
-    - automation.loft_fan_turn_off_when_not_hot
-    - automation.garage_fan_turn_on_when_hot
-    - automation.garage_fan_turn_off_when_not_hot
-    - automation.turn_on_air_freshener_socket_in_the_morning
-    - automation.turn_off_air_freshener_socket_at_night
-
-automation_system:
-  name: HAPi Resource Monitoring
-  entities:
-    - automation.hapi_high_load_alert
-    - automation.hapi_low_disk_space_alert
-    - automation.hapi_low_memory_alert
-
-have_i_been_pawned:
-  name: HaveIBeenPwned
-  entities:
-    - !secret sensor_hibp_email1
-    - !secret sensor_hibp_email2
+# have_i_been_pawned:
+#   name: HaveIBeenPwned
+#   entities:
+#     - !secret sensor_hibp_email1
+#     - !secret sensor_hibp_email2
 
 scenes_living_room:
   name: Scenes Living Room
