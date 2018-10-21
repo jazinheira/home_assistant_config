@@ -5,12 +5,6 @@
   radius: 250
   icon: mdi:worker
 
-- name: Forest
-  latitude: !secret latitude_loc_forest
-  longitude: !secret longitude_loc_forest
-  radius: 250
-  icon: mdi:school
-
 - name: Work
   latitude: !secret latitude_loc_work
   longitude: !secret longitude_loc_work
