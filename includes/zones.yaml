@@ -3,10 +3,10 @@
   latitude: !secret latitude_loc_home
   longitude: !secret longitude_loc_home
   radius: 250
-  icon: mdi:worker
+  icon: mdi:home
 
 - name: Work
   latitude: !secret latitude_loc_work
   longitude: !secret longitude_loc_work
   radius: 250
-  icon: mdi:worker
+  icon: mdi:briefcase
